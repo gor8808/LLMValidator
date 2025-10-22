@@ -1,5 +1,6 @@
 using FluentValidation;
 using LLMValidation;
+using LLMValidation.Prompts;
 
 namespace LLMValidation.FluentValidation;
 
@@ -80,7 +81,7 @@ public static class LLMValidatorExtensions
         return ruleBuilder.MustPassLLMValidation(validator, new LLMValidationOptions
         {
             ClientModelName = clientModelName ?? LLMValidationModelDefaultOption.DefaultClientName,
-            ValidationPrompt = $"Check if the following text is about {topic}. The text must be primarily focused on this topic.",
+            ValidationPrompt = string.Format(ValidationPrompts.TopicValidation, topic),
             ErrorMessage = $"The text must be about {topic}."
         });
     }
@@ -101,7 +102,7 @@ public static class LLMValidatorExtensions
         return ruleBuilder.MustPassLLMValidation(validator, new LLMValidationOptions
         {
             ClientModelName = clientModelName ?? LLMValidationModelDefaultOption.DefaultClientName,
-            ValidationPrompt = "Check if the following text has correct grammar and spelling. The text should be well-written and free of grammatical errors.",
+            ValidationPrompt = ValidationPrompts.GrammarAndSpelling,
             ErrorMessage = "The text contains grammar or spelling errors."
         });
     }
@@ -124,7 +125,7 @@ public static class LLMValidatorExtensions
         return ruleBuilder.MustPassLLMValidation(validator, new LLMValidationOptions
         {
             ClientModelName = clientModelName ?? LLMValidationModelDefaultOption.DefaultClientName,
-            ValidationPrompt = $"Check if the following text contains or mentions: {requiredContent}",
+            ValidationPrompt = string.Format(ValidationPrompts.RequiredContent, requiredContent),
             ErrorMessage = $"The text must contain {requiredContent}."
         });
     }
@@ -147,7 +148,7 @@ public static class LLMValidatorExtensions
         return ruleBuilder.MustPassLLMValidation(validator, new LLMValidationOptions
         {
             ClientModelName = clientModelName ?? LLMValidationModelDefaultOption.DefaultClientName,
-            ValidationPrompt = $"Check if the following text has a {tone} tone.",
+            ValidationPrompt = string.Format(ValidationPrompts.ToneValidation, tone),
             ErrorMessage = $"The text must have a {tone} tone."
         });
     }
@@ -168,7 +169,7 @@ public static class LLMValidatorExtensions
         return ruleBuilder.MustPassLLMValidation(validator, new LLMValidationOptions
         {
             ClientModelName = clientModelName ?? LLMValidationModelDefaultOption.DefaultClientName,
-            ValidationPrompt = "Check if the following text is appropriate and does not contain offensive, harmful, or inappropriate content.",
+            ValidationPrompt = ValidationPrompts.ContentAppropriateness,
             ErrorMessage = "The text contains inappropriate content."
         });
     }

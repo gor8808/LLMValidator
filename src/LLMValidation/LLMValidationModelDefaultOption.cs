@@ -1,4 +1,6 @@
-﻿namespace LLMValidation;
+﻿using LLMValidation.Prompts;
+
+namespace LLMValidation;
 
 public class LLMValidationModelDefaultOption
 {
@@ -12,7 +14,7 @@ public class LLMValidationModelDefaultOption
     /// <summary>
     /// Optional system prompt to guide the LLM's behavior.
     /// </summary>
-    public string SystemPrompt { get; set; } = "You are a helpful assistant that validates responses based on the provided validation prompt. You should answer only to the question that was asked to be able to act fast. This is going to be used in high load scenarios so the answer needs to be quick. If enough evidence is collected to return the data do not analyze more. Keep the reason short. is_valid field should always indicate if the provided text was matching with the condition and should always be there. The reason field is only needed when prompt is not valid";
+    public string SystemPrompt { get; set; } = SystemPrompts.Default.Build(PromptVariant.Fast);
 
     /// <summary>
     /// Maximum number of tokens for the LLM response.
