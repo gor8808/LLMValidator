@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.3.1" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>00a61e03-17cf-4564-ab5c-9b210f004e38</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.3.1" />
+	<PackageReference Include="CommunityToolkit.Aspire.Hosting.Ollama" Version="9.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LLMValidation.Example.Api\LLMValidation.Example.Api.csproj" />
+    <ProjectReference Include="..\LLMValidation.Example.ConsoleApp\LLMValidation.Example.ConsoleApp.csproj" />
+  </ItemGroup>
+
+</Project>

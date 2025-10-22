@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "FluentValidation.LLM.Example": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:35211;http://localhost:35212"
+    }
+  }
+}
