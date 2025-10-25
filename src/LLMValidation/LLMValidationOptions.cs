@@ -1,3 +1,5 @@
+using LLMValidation.Prompts;
+
 namespace LLMValidation;
 
 /// <summary>
@@ -8,17 +10,19 @@ public class LLMValidationOptions
     /// <summary>
     /// The validation prompt that describes what should be validated.
     /// </summary>
-    public required string ValidationPrompt { get; set; }
+    public required IStaticPromptAdapter ValidationPrompt { get; set; }
 
     /// <summary>
     /// The Model Name should match with client name
     /// </summary>
     public required string ClientModelName { get; set; }
 
+    public required PromptVariant ModelPreferredPromptVariant { get; set; }
+    
     /// <summary>
     /// Optional system prompt to guide the LLM's behavior.
     /// </summary>
-    public string? SystemPrompt { get; set; }
+    public IStaticPromptAdapter? SystemPrompt { get; set; }
 
     /// <summary>
     /// The custom error message to return when validation fails.
@@ -60,6 +64,7 @@ public class LLMValidationOptions
         return new LLMValidationOptions
         {
             ValidationPrompt = ValidationPrompt,
+            ModelPreferredPromptVariant = ModelPreferredPromptVariant,
             ClientModelName = ClientModelName,
             SystemPrompt = SystemPrompt ?? defaultOptions.SystemPrompt,
             ErrorMessage = ErrorMessage,

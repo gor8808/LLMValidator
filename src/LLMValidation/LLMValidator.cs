@@ -81,19 +81,19 @@ public class LLMValidator : ILLMValidator
         var messages = new List<ChatMessage>();
 
         // Add system prompt from defaults if provided
-        if (!string.IsNullOrWhiteSpace(defaultOptions.SystemPrompt))
+        if (defaultOptions.SystemPrompt != null)
         {
-            messages.Add(new ChatMessage(ChatRole.System, defaultOptions.SystemPrompt));
+            messages.Add(new ChatMessage(ChatRole.System, defaultOptions.SystemPrompt.Get(options.ModelPreferredPromptVariant)));
         }
 
         // Add system prompt from options if provided (overrides default)
-        if (!string.IsNullOrWhiteSpace(options.SystemPrompt))
+        if (options.SystemPrompt != null)
         {
-            messages.Add(new ChatMessage(ChatRole.System, options.SystemPrompt));
+            messages.Add(new ChatMessage(ChatRole.System, options.SystemPrompt.Get(options.ModelPreferredPromptVariant)));
         }
 
         // Add validation prompt and value
-        messages.Add(new ChatMessage(ChatRole.User, options.ValidationPrompt));
+        messages.Add(new ChatMessage(ChatRole.User, options.ValidationPrompt.Get(options.ModelPreferredPromptVariant)));
         messages.Add(new ChatMessage(ChatRole.User, $"Text to validate: {value}"));
 
         return messages;

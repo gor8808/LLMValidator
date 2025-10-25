@@ -14,7 +14,7 @@ public class LLMValidationModelDefaultOption
     /// <summary>
     /// Optional system prompt to guide the LLM's behavior.
     /// </summary>
-    public string SystemPrompt { get; set; } = SystemPrompts.Default.Build(PromptVariant.Fast);
+    public IStaticPromptAdapter? SystemPrompt { get; set; } = new StaticPromptAdapter<SystemPrompts.Default>();
 
     /// <summary>
     /// Maximum number of tokens for the LLM response.
