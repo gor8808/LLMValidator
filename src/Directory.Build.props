@@ -1,0 +1,42 @@
+<Project>
+
+    <!-- Import parent Directory.Build.props -->
+    <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))"/>
+
+    <!-- All projects under /src are packable -->
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    </PropertyGroup>
+
+    <!-- Package metadata for all src projects -->
+    <PropertyGroup>
+        <Authors>Gor Grigoryan</Authors>
+        <Company>LLMValidator</Company>
+        <Product>LLMValidator</Product>
+        <Copyright>Copyright (c) LLMValidator Contributors</Copyright>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/yourusername/LLMValidation</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/yourusername/LLMValidation</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryBranch>master</RepositoryBranch>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PackageTags>llm;ai;validation;microsoft-extensions-ai</PackageTags>
+    </PropertyGroup>
+
+    <!-- Version properties -->
+    <PropertyGroup>
+        <VersionPrefix>1.0.0</VersionPrefix>
+        <VersionSuffix Condition="'$(Configuration)' != 'Release'">preview</VersionSuffix>
+    </PropertyGroup>
+
+    <!-- Source Link for debugging -->
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
+    </ItemGroup>
+
+</Project>
