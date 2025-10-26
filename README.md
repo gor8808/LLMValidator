@@ -15,8 +15,8 @@ LLMValidator brings the power of Large Language Models (LLMs) to your validation
 
 | Getting Started | Integration | Advanced |
 |-----------------|-------------|----------|
-| [🎯 Quick Start](docs/QuickStart.md) | [🔄 FluentValidation](docs/FluentValidation.md) | [🎭 Quality Variants](docs/QualityVariants.md) |
-| [📝 Prompt Templates](docs/PromptTemplates.md) | [⚙️ Configuration](docs/Configuration.md) | [🚀 Performance](docs/Performance.md) |
+| [🎯 Quick Start](https://github.com/gor8808/LLMValidator/blob/master/docs/QuickStart.md) | [🔄 FluentValidation](https://github.com/gor8808/LLMValidator/blob/master/docs/FluentValidation.md) | [🎭 Quality Variants](https://github.com/gor8808/LLMValidator/blob/master/docs/QualityVariants.md) |
+| [📝 Prompt Templates](https://github.com/gor8808/LLMValidator/blob/master/docs/PromptTemplates.md) | [⚙️ Configuration](https://github.com/gor8808/LLMValidator/blob/master/docs/Configuration.md) | [🚀 Performance](https://github.com/gor8808/LLMValidator/blob/master/docs/Performance.md) |
 
 LLMValidator is a .NET library that **complements** traditional validation by handling scenarios where regex and algorithmic validation fall short - like grammar, tone, meaning, and context.
 
@@ -78,13 +78,13 @@ dotnet add package Microsoft.Extensions.AI.OpenAI
 
 ## 🚀 Get Started
 
-1. **[Quick Start](docs/QuickStart.md)** - 5-minute setup
-2. **[Prompt Templates](docs/PromptTemplates.md)** - Available validation templates
-3. **[FluentValidation](docs/FluentValidation.md)** - Integration guide
+1. **[Quick Start](https://github.com/gor8808/LLMValidator/blob/master/docs/QuickStart.md)** - 5-minute setup
+2. **[Prompt Templates](https://github.com/gor8808/LLMValidator/blob/master/docs/PromptTemplates.md)** - Available validation templates
+3. **[FluentValidation](https://github.com/gor8808/LLMValidator/blob/master/docs/FluentValidation.md)** - Integration guide
 
 ## 🏆 Features
 
-Built on **Microsoft.Extensions.AI** for maximum compatibility and extensibility. See the [Configuration Guide](docs/Configuration.md) for setup details including:
+Built on **Microsoft.Extensions.AI** for maximum compatibility and extensibility. See the [Configuration Guide](https://github.com/gor8808/LLMValidator/blob/master/docs/Configuration.md) for setup details including:
 
 - **Multiple LLM Providers**: OpenAI, Azure, Anthropic, Ollama, local models
 - **Distributed Caching**: Redis, SQL Server, Memory caching support
@@ -92,4 +92,4 @@ Built on **Microsoft.Extensions.AI** for maximum compatibility and extensibility
 - **.NET Aspire**: Full orchestration support with automatic model setup
 - **Extensible Architecture**: Custom resolvers, validators, and prompt templates
 
-For complete setup instructions, examples, and advanced configuration, see the **[📖 Documentation](docs/)** above.
+For complete setup instructions, examples, and advanced configuration, see the **[📖 Documentation](https://github.com/gor8808/LLMValidator/tree/master/docs)** above.
