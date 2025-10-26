@@ -50,10 +50,12 @@ builder.Services.AddLLMValidator()
     .AddModelOption("gpt-4", opt => {
         opt.Temperature = 0.1f;
         opt.MaxTokens = 200;
+        opt.MinConfidence = 0.8f;
     })
     .AddModelOption("claude", opt => {
         opt.Temperature = 0.0f;
         opt.MaxTokens = 150;
+        opt.MinConfidence = 0.9f;
     });
 ```
 
@@ -111,6 +113,15 @@ public class LLMValidationOptions
 | **Grammar validation** | 100 | Brief error descriptions |
 | **Business emails** | 150 | Detailed feedback |
 | **Complex documents** | 300 | Comprehensive analysis |
+
+### Confidence Thresholds
+
+| Confidence Level | MinConfidence | Best For |
+|------------------|---------------|----------|
+| **High certainty** | 0.9-1.0 | Legal docs, compliance, critical validations |
+| **Standard** | 0.7-0.8 | Business content, professional communications |
+| **Permissive** | 0.5-0.6 | Creative content, exploratory validations |
+| **No threshold** | null | Let LLM decide, review confidence in results |
 
 ## 🏠 .NET Aspire Local Setup
 
