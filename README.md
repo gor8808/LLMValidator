@@ -96,3 +96,7 @@ Built on **Microsoft.Extensions.AI** for maximum compatibility and extensibility
 - **Extensible Architecture**: Custom resolvers, validators, and prompt templates
 
 For complete setup instructions, examples, and advanced configuration, see the **[📖 Documentation](https://github.com/gor8808/LLMValidator/tree/master/docs)** above.
+
+## References
+
+- [AI-Powered Validation in .NET: Introducing LLMValidator with Microsoft.Extensions.AI](https://gor-grigoryan.medium.com/ai-powered-validation-in-net-introducing-llmvalidator-with-microsoft-extensions-ai-16029ef5d920) on Medium
