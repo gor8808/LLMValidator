@@ -82,6 +82,9 @@ public class LLMValidationOptions
     /// <summary>Maximum tokens in response. Lower = faster/cheaper</summary>
     public int? MaxTokens { get; set; }
 
+    /// <summary>Minimum confidence threshold (0.0-1.0). Validation fails if LLM confidence is below this value</summary>
+    public float? MinConfidence { get; set; }
+
     /// <summary>Request timeout. Default: 2 minutes</summary>
     public TimeSpan TimeoutMs { get; set; } = TimeSpan.FromMinutes(2);
 

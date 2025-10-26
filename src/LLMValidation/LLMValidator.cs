@@ -118,6 +118,16 @@ public class LLMValidator : ILLMValidator
             throw new JsonException("Unable to parse LLM response");
         }
 
+        // Check confidence threshold if specified
+        if (options.MinConfidence.HasValue && validationResponse.Confidence.HasValue)
+        {
+            if (validationResponse.Confidence.Value < options.MinConfidence.Value)
+            {
+                var confidenceMessage = $"Validation confidence ({validationResponse.Confidence.Value:F2}) is below minimum threshold ({options.MinConfidence.Value:F2}).";
+                return LLMValidationResult.Failure(confidenceMessage, responseText);
+            }
+        }
+
         if (validationResponse.IsValid)
         {
             return LLMValidationResult.Success(validationResponse.Reason, responseText);

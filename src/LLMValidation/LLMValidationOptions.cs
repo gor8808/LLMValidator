@@ -39,6 +39,11 @@ public class LLMValidationOptions
     /// </summary>
     public float? Temperature { get; set; }
 
+    /// <summary>
+    /// Minimum confidence score required for validation to be considered reliable (0.0 to 1.0).
+    /// If the LLM's confidence is below this threshold, validation will fail regardless of the result.
+    /// </summary>
+    public float? MinConfidence { get; set; }
 
     /// <summary>
     /// Timeout for the LLM request.
@@ -67,6 +72,7 @@ public class LLMValidationOptions
             ErrorMessage = ErrorMessage,
             MaxTokens = MaxTokens ?? defaultOptions.MaxTokens,
             Temperature = Temperature ?? defaultOptions.Temperature,
+            MinConfidence = MinConfidence ?? defaultOptions.MinConfidence,
             TimeoutMs = TimeoutMs == TimeSpan.Zero ? defaultOptions.TimeoutMs : TimeoutMs,
             Metadata = mergedMetadata
         };

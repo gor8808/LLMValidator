@@ -33,6 +33,11 @@ public class LLMValidationModelDefaultOption
     /// </summary>
     public float Temperature { get; set; } = 0.1f;
 
+    /// <summary>
+    /// Minimum confidence score required for validation to be considered reliable (0.0 to 1.0).
+    /// If the LLM's confidence is below this threshold, validation will fail regardless of the result.
+    /// </summary>
+    public float? MinConfidence { get; set; }
 
     /// <summary>
     /// Timeout for the LLM request.

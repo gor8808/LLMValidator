@@ -18,4 +18,10 @@ public class LLMValidationResponse
     /// </summary>
     [JsonPropertyName("r")]
     public string? Reason { get; set; }
+
+    /// <summary>
+    /// Confidence score from 0.0 to 1.0, where 1.0 represents maximum confidence.
+    /// </summary>
+    [JsonPropertyName("c")]
+    public float? Confidence { get; set; }
 }

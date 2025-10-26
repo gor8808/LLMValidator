@@ -18,8 +18,8 @@ public class SystemValidationPrompts : IPromptTemplate
     /// Best for: High-throughput scenarios, simple validations, cost-sensitive applications.
     /// </summary>
     public static string Fast => """
-                                 You are a text validator. Respond with JSON only: {"v": boolean, "r": string|null}
-                                 Rules: v=true if text meets ALL criteria, reason only when invalid, be fast.
+                                 You are a text validator. Respond with JSON only: {"v": boolean, "r": string|null, "c": float|null}
+                                 Rules: v=true if text meets ALL criteria, reason only when invalid, c=confidence 0.0-1.0, be fast.
                                  """;
 
     /// <summary>
@@ -28,11 +28,12 @@ public class SystemValidationPrompts : IPromptTemplate
     /// </summary>
     public static string Balanced => """
                                      You are a text validator. Evaluate text against criteria and respond with JSON only:
-                                     {"v": boolean, "r": string|null}
+                                     {"v": boolean, "r": string|null, "c": float|null}
 
                                      Rules:
                                      - v: true if text meets ALL criteria, false otherwise
-                                     - reason: brief explanation only when invalid (null when valid)
+                                     - r: brief explanation only when invalid (null when valid)
+                                     - c: confidence score 0.0-1.0 (higher = more certain)
                                      - Be decisive and fast
                                      """;
 
@@ -47,13 +48,15 @@ public class SystemValidationPrompts : IPromptTemplate
                                      Respond with valid JSON only, using this exact structure:
                                      {
                                        "v": boolean,
-                                       "r": string or null
+                                       "r": string or null,
+                                       "c": float or null
                                      }
 
                                      ## Guidelines:
                                      - Set "v" to true if text meets ALL validation criteria
                                      - Set "v" to false if text fails ANY validation criteria
                                      - Include "r" only when v is false (set to null when valid)
+                                     - Set "c" to confidence score 0.0-1.0 (how certain you are of the validation result)
                                      - Keep reasons under 100 characters and factual
                                      - Focus on the most critical validation failure
                                      - Be decisive - avoid ambiguous language

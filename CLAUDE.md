@@ -4,11 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-LLMValidator is a .NET 9.0 library that enables semantic validation using Large Language Models through Microsoft.Extensions.AI. It provides fluent validation extensions and supports any LLM provider.
+LLMValidator is a .NET 9.0 library that enables semantic validation using Large Language Models through Microsoft.Extensions.AI. The creation of Microsoft.Extensions.AI makes AI accessible for developers without needing infrastructure knowledge - enabling AI benefits with just one line of code.
 
-This package is deisnged to help developers to easy integrate with any LLM solution to write API endpoint validations quickly. The package is designed with memory/performence first approach to not cause issues on user's machine.
+### Core Philosophy: Complementary, Not Replacement
 
-Other then providing the package the solution comes with ready-to-use prompts that are Well tested for LLM Validation
+**CRITICAL**: LLMValidator **complements** traditional validation, it does NOT replace it. Traditional validation (regex, algorithms) works perfectly for format/structure validation and should continue to be used. LLM validation is only used where traditional validation cannot work - for grammar, tone, meaning, context, and semantic understanding.
+
+### Performance-First Design
+
+- Memory/performance optimized to not cause issues on production systems
+- Built-in Microsoft.Extensions.AI caching reduces costs and improves response times
+- Quality variants (Fast/Balanced/Accurate) allow speed vs accuracy tradeoffs
+- Designed for API endpoint validations with minimal overhead
 
 ## Architecture
 
@@ -26,6 +33,14 @@ Other then providing the package the solution comes with ready-to-use prompts th
 - `IChatClientResolver` - Resolves chat clients by model name (supports keyed services)
 - `LLMValidationOptions` - Configuration class with immutable defaults merging
 - `LLMValidatorExtensions` - FluentValidation helper methods
+
+### Prompt Template System
+
+- `IPromptTemplate` - Interface for structured prompt templates
+- `PromptVariant` enum - Fast/Balanced/Accurate quality variants
+- `ValidationPrompts` - Comprehensive collection of well-tested prompt templates
+- **Direct Access**: Use `BusinessValidationPrompts.ProposalValidation.Fast` when variant is known at compile time
+- **Dynamic Access**: Use extension methods for runtime variant selection
 
 
 
@@ -80,7 +95,15 @@ dotnet run
 - `LLMValidationOptions.cs:53` - Options merging logic with `WithDefaults()`
 - `LLMValidatorExtensions.cs` - FluentValidation helper methods
 - `IChatClientResolver.cs` - Client resolution interface
-- `ValidationPrompts.cs` - Predefined validation prompts
+- `ValidationPrompts.cs` - Restructured prompt template system with IPromptTemplate interfaces
+
+### Documentation Structure
+- `docs/` - Comprehensive documentation following FusionCache style
+- `docs/Configuration.md` - Microsoft.Extensions.AI setup, DI extensibility, Aspire integration
+- `docs/QuickStart.md` - 5-minute setup guide
+- `docs/AGentleIntroduction.md` - Philosophy emphasizing complementary approach
+- `docs/PromptTemplates.md` - Template system usage (direct vs dynamic access)
+- `docs/QualityVariants.md` - Speed vs accuracy tradeoffs with cost considerations
 
 ## Development Guidelines
 
@@ -92,10 +115,12 @@ dotnet run
 - Tests focus on immutability, options merging, and resolver patterns
 
 ### Microsoft.Extensions.AI Integration
-- Built on IChatClient abstraction
-- Supports structured JSON responses
-- Uses ChatResponseFormat.ForJsonSchema<LLMValidationResponse>()
-- Compatible with any LLM provider (OpenAI, Ollama, Azure, etc.)
+- Built on IChatClient abstraction for universal AI provider support
+- Supports structured JSON responses using ChatResponseFormat.ForJsonSchema<LLMValidationResponse>()
+- **Built-in Features**: Distributed caching, OpenTelemetry monitoring, request/response logging
+- Compatible with any LLM provider (OpenAI, Azure, Anthropic, Ollama, local models)
+- **Caching**: Uses Microsoft.Extensions.AI built-in caching (not custom implementations)
+- **Telemetry**: Leverages Microsoft.Extensions.AI OpenTelemetry integration (not custom wrappers)
 
 ### Options Pattern
 - LLMValidationOptions are immutable after merging
@@ -116,3 +141,31 @@ Two NuGet packages:
 - **LLMValidation.FluentValidation** - FluentValidation extensions
 
 Both target .NET 9.0 with nullable reference types enabled.
+
+## Project Management
+
+### Central Package Management
+- Uses Directory.Build.props (root) and Directory.Packages.props for centralized package versioning
+- Separate src/Directory.Build.props for packable projects under `/src` folder
+- All dependencies managed centrally for consistency
+
+### Documentation Philosophy
+- **Concise and Practical**: Documentation is streamlined for easy integration
+- **FusionCache Style**: Clear navigation, practical examples, minimal text
+- **Complementary Emphasis**: Always emphasize that LLM validation complements (never replaces) traditional validation
+- **Microsoft.Extensions.AI First**: Document built-in capabilities before custom implementations
+
+## Important Development Notes
+
+### What NOT to Do
+- **Never position LLM validation as replacement for traditional validation**
+- **Never create custom caching/telemetry when Microsoft.Extensions.AI has built-in support**
+- **Never make documentation overly verbose** - keep it concise and practical
+- **Never include placeholder cost calculations** - use proper methodology or disclaimers
+
+### Best Practices
+- Emphasize complementary approach in all documentation
+- Use Microsoft.Extensions.AI built-in features first
+- Keep documentation concise but comprehensive
+- Provide both direct template access and dynamic runtime selection examples
+- Include proper cost calculation methodology with disclaimers about variable costs
