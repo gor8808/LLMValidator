@@ -283,7 +283,7 @@ public class LLMValidatorExtensionsTests
         public ContentValidator(ILLMValidator llmValidator, string requiredContent)
         {
             RuleFor(x => x.Description)
-                .MustContain(llmValidator, requiredContent);
+                .MustContainContent(llmValidator, requiredContent);
         }
     }
 

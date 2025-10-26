@@ -2,19 +2,25 @@
 
 namespace LLMValidation;
 
+/// <summary>
+/// Default configuration options for LLM validation by model.
+/// </summary>
 public class LLMValidationModelDefaultOption
 {
+    /// <summary>
+    /// Default client name constant.
+    /// </summary>
     public const string DefaultClientName = nameof(LLMValidationModelDefaultOption);
 
     /// <summary>
-    /// Client model name
+    /// The model name.
     /// </summary>
     public string ClientModelName { get; set; }
 
     /// <summary>
     /// Optional system prompt to guide the LLM's behavior.
     /// </summary>
-    public IStaticPromptAdapter? SystemPrompt { get; set; } = new StaticPromptAdapter<SystemPrompts.Default>();
+    public string? SystemPrompt { get; set; } = SystemValidationPrompts.Balanced;
 
     /// <summary>
     /// Maximum number of tokens for the LLM response.
@@ -29,7 +35,7 @@ public class LLMValidationModelDefaultOption
 
 
     /// <summary>
-    /// Timeout for the LLM request in milliseconds.
+    /// Timeout for the LLM request.
     /// </summary>
     public TimeSpan TimeoutMs { get; set; } = TimeSpan.FromSeconds(30);
 

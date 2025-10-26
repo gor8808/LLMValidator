@@ -1,20 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<OutputType>Exe</OutputType>
-		<TargetFramework>net9.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Aspire.OllamaSharp" Version="9.8.0" />
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.1" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Aspire.OllamaSharp" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\..\src\LLMValidation\LLMValidation.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\LLMValidation\LLMValidation.csproj" />
+  </ItemGroup>
 
 </Project>

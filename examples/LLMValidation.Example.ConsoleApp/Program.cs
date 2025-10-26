@@ -22,20 +22,36 @@ builder.Services.AddDistributedMemoryCache();
 // The connection names must match what's configured in AppHost
 var b = builder.AddOllamaApiClient("llama3-2-connection")
     .AddKeyedChatClient("llama3-2")
-    .UseDistributedCache();
+    .UseDistributedCache(configure: c =>
+    {
+        // Include model name into cache key
+        c.CacheKeyAdditionalValues = ["llama3-2"];
+    });
 
 
 builder.AddOllamaApiClient("tinyllama")
     .AddKeyedChatClient("tinyllama")
-    .UseDistributedCache();
+    .UseDistributedCache(configure: c =>
+    {
+        // Include model name into cache key
+        c.CacheKeyAdditionalValues = ["tinyllama"];
+    });
 
 builder.AddOllamaApiClient("llama3-2-instruct")
     .AddKeyedChatClient("llama3-2-instruct")
-    .UseDistributedCache();
+    .UseDistributedCache(configure: c =>
+    {
+        // Include model name into cache key
+        c.CacheKeyAdditionalValues = ["llama3-2-instruct"];
+    });
 
 builder.AddOllamaApiClient("gemma2-connection")
     .AddKeyedChatClient("gemma2")
-    .UseDistributedCache();
+    .UseDistributedCache(configure: c =>
+    {
+        // Include model name into cache key
+        c.CacheKeyAdditionalValues = ["gemma2"];
+    });
 
 // Register LLM validator
 builder.Services.AddLLMValidator()

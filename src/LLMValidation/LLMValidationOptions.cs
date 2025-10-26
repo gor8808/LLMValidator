@@ -10,19 +10,17 @@ public class LLMValidationOptions
     /// <summary>
     /// The validation prompt that describes what should be validated.
     /// </summary>
-    public required IStaticPromptAdapter ValidationPrompt { get; set; }
+    public required string ValidationPrompt { get; set; }
 
     /// <summary>
-    /// The Model Name should match with client name
+    /// The model name used to resolve the chat client.
     /// </summary>
     public required string ClientModelName { get; set; }
-
-    public required PromptVariant ModelPreferredPromptVariant { get; set; }
     
     /// <summary>
     /// Optional system prompt to guide the LLM's behavior.
     /// </summary>
-    public IStaticPromptAdapter? SystemPrompt { get; set; }
+    public string? SystemPrompt { get; set; }
 
     /// <summary>
     /// The custom error message to return when validation fails.
@@ -43,7 +41,7 @@ public class LLMValidationOptions
 
 
     /// <summary>
-    /// Timeout for the LLM request in milliseconds.
+    /// Timeout for the LLM request.
     /// </summary>
     public TimeSpan TimeoutMs { get; set; }
 
@@ -64,7 +62,6 @@ public class LLMValidationOptions
         return new LLMValidationOptions
         {
             ValidationPrompt = ValidationPrompt,
-            ModelPreferredPromptVariant = ModelPreferredPromptVariant,
             ClientModelName = ClientModelName,
             SystemPrompt = SystemPrompt ?? defaultOptions.SystemPrompt,
             ErrorMessage = ErrorMessage,

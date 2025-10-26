@@ -18,6 +18,9 @@ public class LLMValidator : ILLMValidator
         PropertyNameCaseInsensitive = true
     };
 
+    /// <summary>
+    /// Creates LLMValidator instance.
+    /// </summary>
     public LLMValidator(
         IServiceProvider serviceProvider,
         IChatClientResolver chatClientResolver)
@@ -26,6 +29,13 @@ public class LLMValidator : ILLMValidator
         _chatClientResolver = chatClientResolver;
     }
 
+    /// <summary>
+    /// Validates text using LLM with specified options.
+    /// </summary>
+    /// <param name="value">Text to validate</param>
+    /// <param name="options">Validation configuration</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>Validation result with success/failure status</returns>
     public async Task<LLMValidationResult> ValidateAsync(
         string value,
         LLMValidationOptions options,
@@ -83,17 +93,17 @@ public class LLMValidator : ILLMValidator
         // Add system prompt from defaults if provided
         if (defaultOptions.SystemPrompt != null)
         {
-            messages.Add(new ChatMessage(ChatRole.System, defaultOptions.SystemPrompt.Get(options.ModelPreferredPromptVariant)));
+            messages.Add(new ChatMessage(ChatRole.System, defaultOptions.SystemPrompt));
         }
 
         // Add system prompt from options if provided (overrides default)
         if (options.SystemPrompt != null)
         {
-            messages.Add(new ChatMessage(ChatRole.System, options.SystemPrompt.Get(options.ModelPreferredPromptVariant)));
+            messages.Add(new ChatMessage(ChatRole.System, options.SystemPrompt));
         }
 
         // Add validation prompt and value
-        messages.Add(new ChatMessage(ChatRole.User, options.ValidationPrompt.Get(options.ModelPreferredPromptVariant)));
+        messages.Add(new ChatMessage(ChatRole.User, options.ValidationPrompt));
         messages.Add(new ChatMessage(ChatRole.User, $"Text to validate: {value}"));
 
         return messages;

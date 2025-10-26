@@ -2,8 +2,14 @@
 
 namespace LLMValidation;
 
+/// <summary>
+/// Builder for configuring LLM validator services.
+/// </summary>
 public class LLMValidatorBuilder
 {
+    /// <summary>
+    /// The service collection being configured.
+    /// </summary>
     public required IServiceCollection Services { get; init; }
 
     internal LLMValidatorBuilder AddValidatorCoreServices()
@@ -20,11 +26,17 @@ public class LLMValidatorBuilder
         return this;
     }
 
+    /// <summary>
+    /// Adds default model configuration options.
+    /// </summary>
     public LLMValidatorBuilder AddModelOption(Action<LLMValidationModelDefaultOption>? configureAction = null)
     {
         return AddModelOption(LLMValidationModelDefaultOption.DefaultClientName, configureAction);
     }
 
+    /// <summary>
+    /// Adds model-specific configuration options.
+    /// </summary>
     public LLMValidatorBuilder AddModelOption(string modelName, Action<LLMValidationModelDefaultOption>? configureAction = null)
     {
         Services.AddOptions<LLMValidationModelDefaultOption>(modelName)
@@ -34,21 +46,15 @@ public class LLMValidatorBuilder
         return this;
     }
 
+    /// <summary>
+    /// Adds model-specific configuration options with access to services.
+    /// </summary>
     public LLMValidatorBuilder AddModelOption(string modelName, Action<LLMValidationModelDefaultOption, IServiceCollection> configureAction)
     {
         Services.AddOptions<LLMValidationModelDefaultOption>(modelName)
             .Configure(configureAction)
             .PostConfigure(m => m.ClientModelName = modelName);
 
-        return this;
-    }
-
-    /// <summary>
-    /// Registers a custom chat client resolver.
-    /// </summary>
-    public LLMValidatorBuilder UseChatClientResolver<TResolver>() where TResolver : class, IChatClientResolver
-    {
-        Services.AddSingleton<IChatClientResolver, TResolver>();
         return this;
     }
 

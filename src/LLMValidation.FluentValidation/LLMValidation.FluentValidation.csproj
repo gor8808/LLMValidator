@@ -1,27 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>LLMValidation.FluentValidation</PackageId>
-    <Version>1.0.0</Version>
-    <Authors>Your Name</Authors>
-    <Description>FluentValidation integration for LLMValidation. Enables intelligent string validation with any LLM provider using FluentValidation's fluent API.</Description>
-    <PackageTags>llm;ai;validation;fluentvalidation;microsoft-extensions-ai</PackageTags>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/yourusername/LLMValidation</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/yourusername/LLMValidation</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-  </PropertyGroup>
+    <PropertyGroup>
+        <PackageId>LLMValidation.FluentValidation</PackageId>
+        <Description>FluentValidation integration for LLMValidation. Enables intelligent string validation with any LLM provider using FluentValidation's fluent API.</Description>
+        <PackageTags>llm;ai;validation;fluentvalidation;microsoft-extensions-ai</PackageTags>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\LLMValidation\LLMValidation.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\LLMValidation\LLMValidation.csproj"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="12.0.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="FluentValidation"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="LLMValidation.Tests"/>
+    </ItemGroup>
 
 </Project>

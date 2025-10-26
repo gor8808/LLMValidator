@@ -25,7 +25,7 @@ public class DogDescriptionValidator : AbstractValidator<DogDescription>
             .WithMessage("Description must be about dogs.");
 
         RuleFor(x => x.Description)
-            .MustContain(llmValidator, "dog breed names or dog-related terminology")
+            .MustContainContent(llmValidator, "dog breed names or dog-related terminology")
             .WithMessage("Description should mention dog breeds or dog-related terms.");
     }
 }
