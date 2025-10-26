@@ -26,7 +26,13 @@
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <PackageTags>llm;ai;validation;microsoft-extensions-ai</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
+
+    <!-- Include root README.md in all packages -->
+    <ItemGroup>
+        <None Include="$(MSBuildThisFileDirectory)../../README.md" Pack="true" PackagePath="README.md" />
+    </ItemGroup>
 
     <!-- Version properties -->
     <PropertyGroup>
