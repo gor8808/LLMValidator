@@ -17,8 +17,8 @@
         <Product>LLMValidator</Product>
         <Copyright>Copyright (c) LLMValidator Contributors</Copyright>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageProjectUrl>https://github.com/yourusername/LLMValidation</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/yourusername/LLMValidation</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/gor8808/LLMValidation</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/gor8808/LLMValidation</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <RepositoryBranch>master</RepositoryBranch>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
