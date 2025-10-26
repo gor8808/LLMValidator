@@ -3,10 +3,11 @@
 - [x] better prompting - move prompts to separate staic class to core
    - [x] remove contain
 - [ ] docs
-  - [ ] Microsoft.AI doc about the package and how extendabale it is
-  - [ ] di section how extandable it is 
-    - Creation of that package by microsoft enables buch of possibilites to integrate packages and bring AI to code (make AI accessible for users without even knowing details / infrastructure)
+  - [x] Microsoft.AI doc about the package and how extendabale it is
+  - [x] di section how extandable it is 
+  - [] Into: Creation of that package by microsoft enables buch of possibilites to integrate packages and bring AI to code (make AI accessible for users without even knowing details / infrastructure)
     so users know that by one line they can use the benefits of AI
   - [ ] distributed cache
   - [ ] aspire local setup
   - [ ] fields of AI Chat (temp, etc, description)
+  - [ ] Fix readme.md of root and docs/readme. make them synced

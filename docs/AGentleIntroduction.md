@@ -350,44 +350,8 @@ Text2: "You need to review this document ASAP."
 // LLM correctly identifies: formal vs. urgent
 ```
 
-## 🚦 Getting Started
+## 🚀 Get Started
 
-Ready to try LLM validation? Here's your path forward:
-
-1. **📚 [Quick Start](QuickStart.md)** - Get running in 5 minutes
-3. **⚙️ [Configuration](Configuration.md)** - Customize for your needs
-4. **📝 [Prompt Templates](PromptTemplates.md)** - Explore available templates
-
-## 💡 Best Practices
-
-### Start Simple
-```csharp
-// Begin with basic prompts
-ValidationPrompt = "Check if this text is appropriate"
-
-// Evolve to more specific requirements
-ValidationPrompt = "Check if this customer support response is helpful, polite, and addresses the specific question asked"
-```
-
-### Choose the Right Variant
-```csharp
-// High-volume, basic checks → Fast
-RuleFor(x => x.Comment).MustBeAppropriate(validator, PromptVariant.Fast);
-
-// Critical business content → Accurate
-RuleFor(x => x.PressRelease).MustHaveValidGrammar(validator, PromptVariant.Accurate);
-```
-
-### Combine Validations
-```csharp
-// Layer multiple validations for comprehensive checks
-RuleFor(x => x.Article)
-    .MustHaveValidGrammar(validator)           // Language quality
-    .MustBeAbout(validator, x => x.Category)   // Topic relevance
-    .MustHaveTone(validator, "professional")   // Communication style
-    .MustContainContent(validator, "examples and practical tips"); // Content requirements
-```
-
----
-
-**Next Step**: Ready to implement? Head over to the [Quick Start Guide](QuickStart.md) to get LLMValidator running in your project! 🚀
+1. **[Quick Start](QuickStart.md)** - 5-minute setup
+2. **[Prompt Templates](PromptTemplates.md)** - Available templates
+3. **[FluentValidation](FluentValidation.md)** - Integration guide

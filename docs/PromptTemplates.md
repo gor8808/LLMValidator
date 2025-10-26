@@ -1,20 +1,11 @@
-# 📝 Prompt Templates Guide
+# 📝 Prompt Templates
 
-LLMValidator comes with a comprehensive library of **pre-built prompt templates** designed for common validation scenarios. These templates are optimized for different LLM models and provide consistent, reliable validation results.
+Pre-built templates for common validation scenarios with three quality levels: Fast, Balanced, Accurate.
 
-## 🎯 Template System Overview
+## 📋 Template Types
 
-### Template Types
-
-The library includes two types of templates:
-
-1. **Static Templates** - `IPromptTemplate`
-   - No parameters required
-   - Examples: Grammar validation, appropriateness checks
-
-2. **Parameterized Templates** - `IPromptTemplate<TArgs>`
-   - Accept arguments for dynamic content
-   - Examples: Topic validation, tone checking, content requirements
+- **Static**: `GrammarValidationPrompts.Fast`
+- **Parameterized**: `TopicValidationPrompts.Fast("AI")`
 
 ### Quality Variants
 
