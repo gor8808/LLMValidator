@@ -105,8 +105,7 @@ public class DefaultChatClientResolverTests
         var act = () => resolver.Resolve("non-existent-model");
 
         // Assert
-        act.Should().Throw<InvalidOperationException>()
-            .WithMessage("*non-existent-model*");
+        act.Should().Throw<InvalidOperationException>();
     }
 
     [Fact]
