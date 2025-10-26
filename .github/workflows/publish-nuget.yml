@@ -1,0 +1,62 @@
+name: Publish NuGet Packages
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Package version to publish'
+        required: true
+        type: string
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Set version from release tag
+      if: github.event_name == 'release'
+      run: echo "PACKAGE_VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+
+    - name: Set version from workflow input
+      if: github.event_name == 'workflow_dispatch'
+      run: echo "PACKAGE_VERSION=${{ github.event.inputs.version }}" >> $GITHUB_ENV
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore --configuration Release /p:Version=${{ env.PACKAGE_VERSION }}
+
+    - name: Test
+      run: dotnet test --no-build --configuration Release --verbosity normal
+
+    - name: Pack packages
+      run: dotnet pack --no-build --configuration Release /p:Version=${{ env.PACKAGE_VERSION }} --output ./packages
+
+    - name: Push to NuGet.org
+      run: |
+        for pkg in ./packages/*.nupkg; do
+          echo "Publishing $pkg"
+          dotnet nuget push "$pkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+        done
+
+    - name: Upload packages as artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: nuget-packages-${{ env.PACKAGE_VERSION }}
+        path: ./packages/*.nupkg
